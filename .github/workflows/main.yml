@@ -11,18 +11,29 @@ jobs:
     steps:
       - name: "minha primeira ação"
         run: echo "hello world!"
+
       - name: "segunda ação"
         run: |
           echo "Você criou o seu primeiro workflow!!!"
           echo "Parabéns!"
+
       - name: "Script Python"
         run: |
           variavel = "Hello World!"
           print(variavel)
         shell: python
+
   segundo-job:
     name: "NodeJs environment install"
     runs-on: ubuntu-latest
     steps:
       - name: "NodeJs version verification"
+        run: node --version
+
+      - name: "Set NodeJs version to 24.18.0"
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.18.0"
+      
+      - name: "Checking NodeJs version after install"
         run: node --version
